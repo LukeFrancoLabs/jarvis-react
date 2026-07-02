@@ -1,6 +1,9 @@
 #!/bin/bash
 # Jarvis Shutdown - stops the Jarvis React dashboard
-# Usage: ./shutdown.sh  (or triggered by cron at 5 PM)
+# Usage: ./shutdown.sh  (or triggered by cron at 5 PM / "Shutdown Jarvis" via Siri)
+
+# AppleScript apps don't inherit the user's PATH, so set it explicitly
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Kill the Express API server
 pkill -f "node server.js" 2>/dev/null

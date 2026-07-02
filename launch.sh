@@ -1,6 +1,9 @@
 #!/bin/bash
 # Jarvis Launch - starts the Jarvis React dashboard on localhost
-# Usage: ./launch.sh  (or say "Jarvis Launch" via Hermes voice command)
+# Usage: ./launch.sh  (or say "Launch Jarvis" via Siri)
+
+# AppleScript apps don't inherit the user's PATH, so set it explicitly
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 cd /Users/reddragon/jarvis-react
 
@@ -10,11 +13,11 @@ pkill -f "vite" 2>/dev/null
 sleep 1
 
 # Start the Express API server in background
-nohup node server.js > /tmp/jarvis-server.log 2>&1 &
+nohup /opt/homebrew/bin/node server.js > /tmp/jarvis-server.log 2>&1 &
 SERVER_PID=$!
 
 # Start the Vite dev server in background
-nohup npx vite > /tmp/jarvis-vite.log 2>&1 &
+nohup /opt/homebrew/bin/npx vite > /tmp/jarvis-vite.log 2>&1 &
 VITE_PID=$!
 
 # Wait for Vite to be ready
